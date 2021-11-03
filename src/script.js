@@ -9,12 +9,17 @@
 */
 const jokeElement = document.getElementById('joke');
 const buttonElement = document.getElementById('button');
+const errorElement = document.getElementById('error-container');
+const errorMesgElement =document.getElementById('error-message');
+const loaderElement = document.getElementById('loader');
+const buttonTextElement = document.getElementById('cta');
+
 const API = 'https://icanhazdadjoke.com/';  
 
 const xhr = new XMLHttpRequest();
 
 function getJokes () { 
-
+ 
     xhr.open('GET', API);
       
     xhr.setRequestHeader('Accept', 'application/json');
@@ -22,16 +27,54 @@ function getJokes () {
     xhr.responseType = 'json'; 
 
     xhr.onload = function() { 
-      showJokes(xhr.response.joke); 
-
+      showJokes(xhr.response.joke);  
+      buttonTextstate(false);
     };
     
+    xhr.onerror = () => {  
+      showError('An error occurred, please try again');
+      buttonTextstate(true);
+
+    }
+
     xhr.send(); 
 }
 
 const showJokes = (jokes) => {
+  showLoader(false)
+  setButtonState(false);
   jokeElement.innerHTML = jokes;
 }
 
-buttonElement.addEventListener('click', getJokes); 
+const showError = (error) => {
+  showLoader(false);
+  setButtonState(false);
+  errorElement.style.display = 'block';
+  errorMesgElement.innerHTML = error; 
+
+}
+
+const showLoader = (isLoading) => {
+  const isVisible = isLoading ? 'block' : 'none';
+  loaderElement.style.display = isVisible;
+}
+ 
+const buttonTextstate = (isError) =>{
+  const buttonText = isError ? 'Try again' : 'Get another one';
+  buttonElement.innerHTML = buttonText;
+}
+
+const setButtonState = (isDisabled) => {
+  if(isDisabled){
+    buttonElement.setAttribute('disabled', 'disabled');
+  }else{
+    buttonElement.removeAttribute('disabled');
+  }
+}
+
+buttonElement.addEventListener('click', () => {
+  setButtonState(true);
+  showLoader(true);
+  getJokes();
+})
  

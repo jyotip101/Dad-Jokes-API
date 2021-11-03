@@ -38,7 +38,7 @@ body{
     border: 2px solid var(--main-color);
     border-radius: 5px;
     margin: 1rem;
-    padding: 0.5rem 0.5rem 3rem 0.5rem;
+    padding: 1.5rem 0.5rem 3rem 0.5rem;
     align-items: center;
     width: 250px;
     height: 180px; 
@@ -46,7 +46,7 @@ body{
 
 }
  
-#joke {
+#joke, .error__container {
     text-align: center; 
     font-size: 100%;
     float: none;
@@ -56,8 +56,11 @@ body{
     color: var(--main-color);
 }
 button{
-    outline: none;
-    border-radius: 5px;  
+    outline: none;  
+    border-radius: 5px;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid var(--main-color); 
     width: 120px;
     height: 35px;
@@ -70,22 +73,19 @@ button{
 
 } 
 
-.button__loader { 
+#loader { 
+    display: none;   
     background-image: linear-gradient(145deg, 
-                    rgba(255,255,255,0.5) 0%, 
-                    rgba(0,0,0,0) 100%);
-                    /* var(--main-color); */
-                    margin: 5px;
+                    #ffd65aa1 0%, 
+                    var(--main-color) 100%); 
+    margin: 5px;
     width: 10px;
     height: 10px;
     border-radius: 100%;  
-    animation: bounce 1.5s 0.5s linear infinite; 
+    animation: bounce 1s linear; 
 
 }
-
-.button__loader i{ 
-    background-color: var(--main-color);
-}
+ 
 
 @keyframes bounce {
     0%, 50%, 100%{
@@ -102,7 +102,10 @@ button{
     }
 }
 
-#cta{
+.error__container{
     display: none;
+}
+#cta{
+    display: block;
 } 
 
