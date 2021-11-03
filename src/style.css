@@ -1,0 +1,108 @@
+:root{
+    --bg-color: #293452;
+    --shadow-color: #d4dbec;
+    --main-color: #ffd65a; 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: var(--bg-color); 
+    
+    /* font-family: monospace; */
+    color: var(--main-color);  
+} 
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    margin-top: 3rem;
+    text-align: center; 
+    font-family: Londrina Outline ;
+    font-size: 200%;
+    font-weight: 600;
+
+}
+
+.joke__container{
+    display: block;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    margin: 1rem;
+    padding: 0.5rem 0.5rem 3rem 0.5rem;
+    align-items: center;
+    width: 250px;
+    height: 180px; 
+    box-shadow: 1px 1px  5px #ffd65a;
+
+}
+ 
+#joke {
+    text-align: center; 
+    font-size: 100%;
+    float: none;
+    font-size: 110%;
+    font-family: monospace; 
+    font-weight: normal;
+    color: var(--main-color);
+}
+button{
+    outline: none;
+    border-radius: 5px;  
+    border: 2px solid var(--main-color); 
+    width: 120px;
+    height: 35px;
+    color: var(--main-color);
+    background-color: var(--bg-color);
+    z-index: 1; 
+    transform: translate(80px, -35px); 
+    cursor: pointer;  
+    box-shadow: 1px 1px  5px #ffd65a;
+
+} 
+
+.button__loader { 
+    background-image: linear-gradient(145deg, 
+                    rgba(255,255,255,0.5) 0%, 
+                    rgba(0,0,0,0) 100%);
+                    /* var(--main-color); */
+                    margin: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;  
+    animation: bounce 1.5s 0.5s linear infinite; 
+
+}
+
+.button__loader i{ 
+    background-color: var(--main-color);
+}
+
+@keyframes bounce {
+    0%, 50%, 100%{
+        transform:scale(1);
+        filter: blur(0px);
+    }
+    25%{
+        transform:scale(0.6);
+        filter: blur(3px);
+    }
+    75%{ 
+        filter: blur(3px);
+        transform:scale(1.4); 
+    }
+}
+
+#cta{
+    display: none;
+} 
+
