@@ -13,11 +13,10 @@ const errorElement = document.getElementById('error-container');
 const errorMesgElement =document.getElementById('error-message');
 const loaderElement = document.getElementById('loader');
 const buttonTextElement = document.getElementById('cta');
-
+//
 const API = 'https://icanhazdadjoke.com/';  
-
 const xhr = new XMLHttpRequest();
-
+//
 function getJokes () { 
  
     xhr.open('GET', API);
@@ -26,55 +25,61 @@ function getJokes () {
     
     xhr.responseType = 'json'; 
 
-    xhr.onload = function() { 
+    xhr.onload = () => { 
       showJokes(xhr.response.joke);  
       buttonTextstate(false);
-    };
+    }
     
     xhr.onerror = () => {  
-      showError('An error occurred, please try again');
+      showError('An error occurred, please try again'); 
       buttonTextstate(true);
 
     }
 
     xhr.send(); 
 }
-
+//
 const showJokes = (jokes) => {
-  showLoader(false)
-  setButtonState(false);
-  jokeElement.innerHTML = jokes;
-}
+  setButtonUIState(false);
+  jokeElement.innerHTML = jokes; 
 
+}
+//
 const showError = (error) => {
-  showLoader(false);
-  setButtonState(false);
-  errorElement.style.display = 'block';
-  errorMesgElement.innerHTML = error; 
-
+  setButtonUIState(false);
+  errorMesgElement.innerHTML = error;  
+  errorElement.style.display = 'block'; 
+  
 }
-
-const showLoader = (isLoading) => {
+//
+const showLoaderState = (isLoading) => {
   const isVisible = isLoading ? 'block' : 'none';
   loaderElement.style.display = isVisible;
 }
- 
+//
 const buttonTextstate = (isError) =>{
   const buttonText = isError ? 'Try again' : 'Get another one';
-  buttonElement.innerHTML = buttonText;
+  buttonTextElement.innerHTML = buttonText;
 }
-
+//
 const setButtonState = (isDisabled) => {
   if(isDisabled){
     buttonElement.setAttribute('disabled', 'disabled');
   }else{
     buttonElement.removeAttribute('disabled');
   }
-}
 
-buttonElement.addEventListener('click', () => {
-  setButtonState(true);
-  showLoader(true);
+  const buttonState = isDisabled ? 'none' : 'block';
+  buttonTextElement.style.display = buttonState;
+}
+//
+const setButtonUIState = (isDisabled) =>{ 
+    showLoaderState(isDisabled);
+    setButtonState(isDisabled); 
+}
+//
+buttonElement.addEventListener('click', function() { 
+  setButtonUIState(true);
   getJokes();
 })
  

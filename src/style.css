@@ -82,7 +82,7 @@ button{
     width: 10px;
     height: 10px;
     border-radius: 100%;  
-    animation: bounce 1s linear; 
+    animation: bounce 1s linear infinite; 
 
 }
  
@@ -108,4 +108,5 @@ button{
 #cta{
     display: block;
 } 
+
 
