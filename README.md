@@ -3,7 +3,7 @@
    
   
 ### Demo
-[Dad Joke app](https://jyotip101.github.io/Dad-Jokes-API/)
+[Dad Joke app](https://thejyotipatel.github.io/Dad-Jokes-API/)
 
  ### Built With
  
